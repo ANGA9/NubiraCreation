@@ -259,13 +259,13 @@ function App() {
           <motion.div className="process-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
             
             <div className="process-connector">
-              <motion.svg width="100%" height="2" preserveAspectRatio="none" viewBox="0 0 100 2">
-                <motion.line 
-                  x1="0" y1="1" x2="100" y2="1" 
-                  stroke="var(--accent-color)" strokeWidth="2" strokeDasharray="5,5"
-                  variants={lineDraw}
-                />
-              </motion.svg>
+              <motion.div 
+                style={{ width: '100%', height: '2px', backgroundColor: 'var(--accent-color)', transformOrigin: 'left' }}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+              />
             </div>
 
             <motion.div className="process-step" variants={staggerItem}>
