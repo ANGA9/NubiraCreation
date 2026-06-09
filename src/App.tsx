@@ -29,7 +29,7 @@ function App() {
           <div className="hero-content">
             <h1>nubira</h1>
             <h2>Quality Apparel<br />Manufacturing<br />Solutions</h2>
-            <button className="btn-primary" aria-label="Get a quote">GET A QUOTE</button>
+            <a href="#contact" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }} aria-label="Get a quote">GET A QUOTE</a>
           </div>
           <div className="hero-image-wrapper">
             <img src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
@@ -241,7 +241,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="contact-section section-padding">
+      <section id="contact" className="contact-section section-padding">
         <div className="container">
           <h3 className="text-center contact-title">Drop us a line!</h3>
           <div className="form-container">
