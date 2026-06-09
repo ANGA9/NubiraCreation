@@ -218,24 +218,6 @@
   color: #666;
 }
 
-/* Vision & Values Dark Section */
-.vision-values {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-.vision-values .section-title {
-  color: #fff;
-}
-.vision-values .circular-card h4 {
-  color: #fff;
-}
-.vision-values .circular-card p {
-  color: #ccc;
-}
-.vision-values .circular-image {
-  border: 4px solid rgba(255, 255, 255, 0.1);
-}
-
 /* Solutions Grid */
 .section-title {
 
@@ -293,6 +275,7 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 3rem;
+  position: relative;
 }
 @media (min-width: 768px) {
   .process-grid {
@@ -638,7 +621,7 @@ img {
   .process-connector {
     display: block;
     position: absolute;
-    top: 30px;
+    top: 41px;
     left: 12.5%;
     width: 75%;
     height: 2px;

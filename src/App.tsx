@@ -254,7 +254,7 @@ function App() {
 
       {/* Process Walkthrough Section */}
       <section className="process-section section-padding">
-        <div className="container" style={{ position: 'relative' }}>
+        <div className="container">
           <motion.h3 className="text-center section-title" {...fadeInUp}>How It Works</motion.h3>
           <motion.div className="process-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
             
