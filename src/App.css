@@ -64,13 +64,13 @@
 }
 .hero-content h1 {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-bottom: 1rem;
   font-weight: 400;
 }
 .hero-content h2 {
   font-family: var(--font-body);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: #222;
   margin-bottom: 2rem;
@@ -203,12 +203,18 @@
 /* Solutions Grid */
 .section-title {
   font-family: var(--font-body);
-  font-size: 2rem;
-  margin-bottom: 3rem;
+  font-size: 1.75rem;
+  margin-bottom: 2.5rem;
   position: relative;
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
+}
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 3.5rem;
+  }
 }
 .section-title::after {
   content: '';

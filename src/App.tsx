@@ -1,6 +1,27 @@
+import { motion } from 'framer-motion'
 import './App.css'
 
 function App() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: { staggerChildren: 0.1 }
+    },
+    viewport: { once: true, margin: "-50px" }
+  }
+
+  const staggerItem = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  }
+
   return (
     <>
       <nav className="navbar">
@@ -26,20 +47,20 @@ function App() {
 
       <section className="hero">
         <div className="container hero-container">
-          <div className="hero-content">
+          <motion.div className="hero-content" {...fadeInUp}>
             <h1>nubira</h1>
             <h2>Quality Apparel<br />Manufacturing<br />Solutions</h2>
             <a href="#contact" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }} aria-label="Get a quote">GET A QUOTE</a>
-          </div>
-          <div className="hero-image-wrapper">
+          </motion.div>
+          <motion.div className="hero-image-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
             <img src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="about bg-light section-padding">
         <div className="container about-container">
-          <div className="about-content">
+          <motion.div className="about-content" {...fadeInUp}>
             <div className="about-text-wrapper">
               <h3>About us</h3>
               <p>
@@ -55,21 +76,21 @@ function App() {
                 aspects of work transactions and proceedings.
               </p>
             </div>
-          </div>
-          <div className="about-image-wrapper">
+          </motion.div>
+          <motion.div className="about-image-wrapper" {...fadeInUp} transition={{ delay: 0.2, duration: 0.6 }}>
             <img src="/about.png" alt="Clean modern sewing studio" className="about-image" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="feature section-padding">
         <div className="container feature-container">
-          <div className="feature-image-wrapper">
+          <motion.div className="feature-image-wrapper" {...fadeInUp}>
             <div className="circular-image">
               <img src="/feature.png" alt="Women working at sewing machines" />
             </div>
-          </div>
-          <div className="feature-content">
+          </motion.div>
+          <motion.div className="feature-content" {...fadeInUp} transition={{ delay: 0.2, duration: 0.6 }}>
             <h3>Quality Apparel Solutions<br />by nubira</h3>
             <p>
               Welcome to nubira, where we prioritize your needs in
@@ -78,91 +99,91 @@ function App() {
               ensuring you receive timely updates. Experience a
               difference in quality and service with us.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="solutions section-padding bg-light">
         <div className="container">
-          <h3 className="text-center section-title">Solution</h3>
-          <div className="solutions-grid">
-            <div className="solution-item">
+          <motion.h3 className="text-center section-title" {...fadeInUp}>Solution</motion.h3>
+          <motion.div className="solutions-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Quality and Integrity</h4>
               <p>We give our Customers a promise of Quality, Integrity & Confidentiality in terms of client's specific requirements/information. This ensures long term trust of our Customers. We offer value added services at no extra cost which has been highly appreciated by our Valued Customers.</p>
-            </div>
-            <div className="solution-item">
+            </motion.div>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Custom Designs</h4>
               <p>Our team of designers will work with you to create custom designs that perfectly represent your brand and vision.</p>
-            </div>
-            <div className="solution-item">
+            </motion.div>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Fast Turnaround</h4>
               <p>We understand the importance of timely delivery and will work to get your order completed and shipped as quickly as possible.</p>
-            </div>
-            <div className="solution-item">
+            </motion.div>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Our Assets</h4>
               <p>State-of-the-art machinery, modern production facilities, and a highly skilled workforce dedicated to precision manufacturing and strict quality control.</p>
-            </div>
-            <div className="solution-item">
+            </motion.div>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Value added</h4>
               <p>We offer services at no extra cost which has been highly appreciated by our Valued Customers. We maintain excellence in Customer's Service and our thorough commitments of offering quality products has been the foundation of our success.</p>
-            </div>
-            <div className="solution-item">
+            </motion.div>
+            <motion.div className="solution-item" variants={staggerItem}>
               <h4>Responsibilities</h4>
               <p>Sourcing right vendors (after deeply studying their present/past capabilities, Industrial reputation).<br />Product development as per Customer's specification considering the competitive price parameters.</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Process Walkthrough Section */}
       <section className="process-section section-padding">
         <div className="container">
-          <h3 className="text-center section-title">How It Works</h3>
-          <div className="process-grid">
-            <div className="process-step">
+          <motion.h3 className="text-center section-title" {...fadeInUp}>How It Works</motion.h3>
+          <motion.div className="process-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            <motion.div className="process-step" variants={staggerItem}>
               <div className="step-number">1</div>
               <h4>Design</h4>
               <p>Share your vision, sketches, or tech packs. We collaborate to perfect the details.</p>
-            </div>
-            <div className="process-step">
+            </motion.div>
+            <motion.div className="process-step" variants={staggerItem}>
               <div className="step-number">2</div>
               <h4>Sample</h4>
               <p>We create a high-quality prototype for your review, ensuring fit and finish.</p>
-            </div>
-            <div className="process-step">
+            </motion.div>
+            <motion.div className="process-step" variants={staggerItem}>
               <div className="step-number">3</div>
               <h4>Approve</h4>
               <p>Once you give the green light on the sample, we prepare for bulk production.</p>
-            </div>
-            <div className="process-step">
+            </motion.div>
+            <motion.div className="process-step" variants={staggerItem}>
               <div className="step-number">4</div>
               <h4>Produce</h4>
               <p>Efficient, ethical manufacturing followed by strict quality control and delivery.</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Certifications & MOQ Section */}
       <section className="trust-section section-padding bg-light">
         <div className="container">
-          <h3 className="text-center section-title">Manufacturing Standards</h3>
+          <motion.h3 className="text-center section-title" {...fadeInUp}>Manufacturing Standards</motion.h3>
           <div className="trust-content text-center">
-            <p className="moq-text"><strong>Low Minimum Order Quantity (MOQ):</strong> Start your line with flexibility. We support low MOQs to help emerging and established brands scale efficiently.</p>
-            <div className="certifications-row">
-              <div className="cert-badge">
+            <motion.p className="moq-text" {...fadeInUp}><strong>Low Minimum Order Quantity (MOQ):</strong> Start your line with flexibility. We support low MOQs to help emerging and established brands scale efficiently.</motion.p>
+            <motion.div className="certifications-row" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+              <motion.div className="cert-badge" variants={staggerItem}>
                 <span className="cert-icon">ISO</span>
                 <span className="cert-name">9001 Certified</span>
-              </div>
-              <div className="cert-badge">
+              </motion.div>
+              <motion.div className="cert-badge" variants={staggerItem}>
                 <span className="cert-icon">GOTS</span>
                 <span className="cert-name">Organic Standards</span>
-              </div>
-              <div className="cert-badge">
+              </motion.div>
+              <motion.div className="cert-badge" variants={staggerItem}>
                 <span className="cert-icon">OEKO</span>
                 <span className="cert-name">Tex Standard 100</span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -170,81 +191,81 @@ function App() {
       {/* Vision & Values Section */}
       <section className="vision-values section-padding">
         <div className="container">
-          <h3 className="text-center section-title">Our Vision & Values</h3>
-          <div className="circular-grid">
-            <div className="circular-card">
+          <motion.h3 className="text-center section-title" {...fadeInUp}>Our Vision & Values</motion.h3>
+          <motion.div className="circular-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            <motion.div className="circular-card" variants={staggerItem}>
               <div className="circular-image">
                 <img src="/vision1.png" alt="Quality Above All" />
               </div>
               <h4>Quality Above All</h4>
               <p>Maintaining the highest standards in our apparel manufacturing. Our dedication to excellence sets us apart in the industry.</p>
-            </div>
-            <div className="circular-card">
+            </motion.div>
+            <motion.div className="circular-card" variants={staggerItem}>
               <div className="circular-image">
                 <img src="/core1.png" alt="Integrity" />
               </div>
               <h4>Integrity</h4>
               <p>Honesty and transparency are at the forefront of nubira. We believe in fostering long-term trust with our clients and partners.</p>
-            </div>
-            <div className="circular-card">
+            </motion.div>
+            <motion.div className="circular-card" variants={staggerItem}>
               <div className="circular-image">
                 <img src="/core3.png" alt="Customer Focus" />
               </div>
               <h4>Customer Focus</h4>
               <p>Our customers are at the heart of everything we do. We listen to their needs and work diligently to exceed their expectations.</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Product and Sales Section */}
-      <section className="product-sales section-padding">
+      <section className="product-sales section-padding bg-light">
         <div className="container">
-          <h3 className="text-center section-title">Product and Sales</h3>
-          <div className="two-col-grid">
-            <div className="info-card">
+          <motion.h3 className="text-center section-title" {...fadeInUp}>Product and Sales</motion.h3>
+          <motion.div className="two-col-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            <motion.div className="info-card" variants={staggerItem}>
               <img src="/prod1.png" alt="Product" className="card-image" />
               <h4>Product</h4>
               <p>Offer a full spectrum of garments, including shirts, t-shirts, dresses for all men's, women's, and kids' & bed sheets, cushion covers, and other home furnishing item ensuring you can cater to diverse demographics and seasonal demands.</p>
-            </div>
-            <div className="info-card">
+            </motion.div>
+            <motion.div className="info-card" variants={staggerItem}>
               <img src="/prod2.png" alt="Sales" className="card-image" />
               <h4>Sales</h4>
               <p>
                 <strong>Expansion-Focused:</strong> "Accelerate Your Pan-India Reach. Connect Your Brand Directly to North India's Premier Retail and Distributor Network."<br/><br/>
                 <strong>Network-Centric:</strong> "Your Gateway to 150+ Cities in North India. We Place Your Products Directly into the Hands of High-Volume Retailers."
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="gallery-section section-padding bg-light">
+      <section className="gallery-section section-padding">
         <div className="container">
-          <h3 className="text-center section-title">Our Work</h3>
-          <div className="gallery-grid">
-            <div className="gallery-item">
+          <motion.h3 className="text-center section-title" {...fadeInUp}>Our Work</motion.h3>
+          <motion.div className="gallery-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            <motion.div className="gallery-item" variants={staggerItem}>
               <img src="/gal1.png" alt="Premium Shirts" />
               <div className="gallery-label">Premium Shirts</div>
-            </div>
-            <div className="gallery-item">
+            </motion.div>
+            <motion.div className="gallery-item" variants={staggerItem}>
               <img src="/gal2.png" alt="Knitwear" />
               <div className="gallery-label">Knitwear</div>
-            </div>
-            <div className="gallery-item">
+            </motion.div>
+            <motion.div className="gallery-item" variants={staggerItem}>
               <img src="/gal3.png" alt="Home Furnishings" />
               <div className="gallery-label">Home Furnishings</div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="contact-section section-padding">
+      <section id="contact" className="contact-section section-padding bg-light">
         <div className="container">
-          <h3 className="text-center contact-title">Drop us a line!</h3>
-          <div className="form-container">
+          <motion.h3 className="text-center contact-title" {...fadeInUp}>Drop us a line!</motion.h3>
+          <motion.div className="form-container" {...fadeInUp}>
             <form action="mailto:nubiracreation9@gmail.com" method="post" encType="text/plain">
               <div className="form-group">
                 <input type="text" name="Name" placeholder="Name" aria-label="Name" className="form-input" />
@@ -268,7 +289,7 @@ function App() {
               <button type="submit" className="btn-submit">SEND</button>
             </form>
             <p className="recaptcha-text">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
-          </div>
+          </motion.div>
           <div className="all-products-link text-center">
             <a href="#">All Products</a>
           </div>
