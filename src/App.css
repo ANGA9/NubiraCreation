@@ -11,9 +11,8 @@
 }
 .nav-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 .logo-link {
   display: flex;
@@ -34,10 +33,6 @@
 .nav-icons {
   display: flex;
   gap: 1.5rem;
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .icon-btn {
   background: none;
@@ -213,9 +208,8 @@
   font-size: 1.75rem;
   margin-bottom: 2.5rem;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  text-align: center;
 }
 @media (min-width: 768px) {
   .section-title {
@@ -372,6 +366,13 @@
 .circular-card .circular-image {
   margin: 0 auto 1.5rem;
   max-width: 300px;
+  overflow: hidden;
+}
+.circular-card .circular-image img {
+  transition: transform 0.5s ease;
+}
+.circular-card:hover .circular-image img {
+  transform: scale(1.08);
 }
 
 /* Two Column Grid for Product & Sales */
@@ -393,6 +394,10 @@
   height: auto;
   margin-bottom: 1.5rem;
   display: block;
+  transition: transform 0.5s ease;
+}
+.info-card:hover .card-image {
+  transform: scale(1.03);
 }
 .info-card h4 {
   font-family: var(--font-body);
@@ -419,6 +424,8 @@
 }
 .gallery-item {
   width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
 }
 .gallery-item img {
   width: 100%;
@@ -426,6 +433,10 @@
   object-fit: cover;
   display: block;
   min-height: 250px;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
 }
 .gallery-label {
   margin-top: 1rem;
