@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
 import type { ReactNode } from 'react'
 import './App.css'
@@ -6,9 +6,10 @@ import './App.css'
 function MagneticButton({ children, href, className, ariaLabel }: { children: ReactNode, href: string, className: string, ariaLabel: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const prefersReducedMotion = useReducedMotion();
 
   const handleMouse = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!ref.current) return;
+    if (prefersReducedMotion || !ref.current) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
@@ -38,9 +39,27 @@ function MagneticButton({ children, href, className, ariaLabel }: { children: Re
 }
 
 function App() {
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const heroParallaxY = useTransform(scrollYProgress, [0, 1], [0, prefersReducedMotion ? 0 : 250]);
+
   const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6 }
+  }
+
+  const slideLeft = {
+    initial: { opacity: 0, x: prefersReducedMotion ? 0 : -40 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6 }
+  }
+
+  const slideRight = {
+    initial: { opacity: 0, x: prefersReducedMotion ? 0 : 40 },
+    whileInView: { opacity: 1, x: 0 },
     viewport: { once: true, margin: "-50px" },
     transition: { duration: 0.6 }
   }
@@ -48,53 +67,68 @@ function App() {
   const staggerContainer = {
     initial: {},
     whileInView: {
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.1 }
     },
     viewport: { once: true, margin: "-50px" }
   }
 
   const staggerItem = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  }
+
+  const scaleInItem = {
+    initial: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.8 },
+    whileInView: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
   }
 
   const textRevealContainer = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.15, delayChildren: 0.1 }
     }
   }
 
   const textRevealWord = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
   }
 
-  const [cursorState, setCursorState] = useState({ x: 0, y: 0, isHovering: false });
+  const lineDraw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    show: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut" } }
+  }
+
+  const [cursorState, setCursorState] = useState({ x: 0, y: 0, isHovering: false, isGallery: false });
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const updateMousePosition = (e: MouseEvent) => {
-      const isHovering = !!(e.target as Element).closest('a, button, img, .icon-btn');
-      setCursorState({ x: e.clientX, y: e.clientY, isHovering });
+      const target = e.target as Element;
+      const isHovering = !!target.closest('a, button, img, .icon-btn');
+      const isGallery = !!target.closest('.gallery-item');
+      setCursorState({ x: e.clientX, y: e.clientY, isHovering, isGallery });
     };
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <>
-      <motion.div
-        className="cursor-dot"
-        animate={{ 
-          x: cursorState.x - 20, 
-          y: cursorState.y - 20,
-          scale: cursorState.isHovering ? 1.8 : 1,
-          backgroundColor: cursorState.isHovering ? "rgba(26, 150, 150, 0.15)" : "rgba(23, 23, 23, 0.05)",
-          borderColor: cursorState.isHovering ? "transparent" : "var(--primary-color)"
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
-      />
+      {!prefersReducedMotion && (
+        <motion.div
+          className="cursor-dot"
+          animate={{ 
+            x: cursorState.x - (cursorState.isHovering ? 40 : 20), 
+            y: cursorState.y - (cursorState.isHovering ? 40 : 20),
+            scale: cursorState.isHovering ? 2 : 1
+          }}
+          transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
+        >
+          <span className="cursor-text" style={{ opacity: cursorState.isGallery ? 1 : 0 }}>VIEW</span>
+        </motion.div>
+      )}
       <nav className="navbar">
         <div className="container nav-container">
           <div className="nav-logo">
@@ -136,14 +170,14 @@ function App() {
             </motion.div>
           </motion.div>
           <motion.div className="hero-image-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
-            <img src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
+            <motion.img style={{ y: heroParallaxY }} src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
           </motion.div>
         </div>
       </section>
 
       <section className="about bg-light section-padding">
         <div className="container about-container">
-          <motion.div className="about-content" {...fadeInUp}>
+          <motion.div className="about-content" {...slideLeft}>
             <div className="about-text-wrapper">
               <h3>About us</h3>
               <p>
@@ -160,7 +194,7 @@ function App() {
               </p>
             </div>
           </motion.div>
-          <motion.div className="about-image-wrapper" {...fadeInUp} transition={{ delay: 0.2, duration: 0.6 }}>
+          <motion.div className="about-image-wrapper" {...slideRight} transition={{ delay: 0.2, duration: 0.6 }}>
             <img src="/about.png" alt="Clean modern sewing studio" className="about-image" />
           </motion.div>
         </div>
@@ -168,12 +202,12 @@ function App() {
 
       <section className="feature section-padding">
         <div className="container feature-container">
-          <motion.div className="feature-image-wrapper" {...fadeInUp}>
+          <motion.div className="feature-image-wrapper" {...slideLeft}>
             <div className="circular-image">
               <img src="/feature.png" alt="Women working at sewing machines" />
             </div>
           </motion.div>
-          <motion.div className="feature-content" {...fadeInUp} transition={{ delay: 0.2, duration: 0.6 }}>
+          <motion.div className="feature-content" {...slideRight} transition={{ delay: 0.2, duration: 0.6 }}>
             <h3>Quality Apparel Solutions<br />by nubira</h3>
             <p>
               Welcome to nubira, where we prioritize your needs in
@@ -220,9 +254,20 @@ function App() {
 
       {/* Process Walkthrough Section */}
       <section className="process-section section-padding">
-        <div className="container">
+        <div className="container" style={{ position: 'relative' }}>
           <motion.h3 className="text-center section-title" {...fadeInUp}>How It Works</motion.h3>
           <motion.div className="process-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
+            
+            <div className="process-connector">
+              <motion.svg width="100%" height="2" preserveAspectRatio="none" viewBox="0 0 100 2">
+                <motion.line 
+                  x1="0" y1="1" x2="100" y2="1" 
+                  stroke="var(--accent-color)" strokeWidth="2" strokeDasharray="5,5"
+                  variants={lineDraw}
+                />
+              </motion.svg>
+            </div>
+
             <motion.div className="process-step" variants={staggerItem}>
               <div className="step-number">1</div>
               <h4>Design</h4>
@@ -254,15 +299,15 @@ function App() {
           <div className="trust-content text-center">
             <motion.p className="moq-text" {...fadeInUp}><strong>Low Minimum Order Quantity (MOQ):</strong> Start your line with flexibility. We support low MOQs to help emerging and established brands scale efficiently.</motion.p>
             <motion.div className="certifications-row" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
-              <motion.div className="cert-badge" variants={staggerItem}>
+              <motion.div className="cert-badge" variants={scaleInItem}>
                 <span className="cert-icon">ISO</span>
                 <span className="cert-name">9001 Certified</span>
               </motion.div>
-              <motion.div className="cert-badge" variants={staggerItem}>
+              <motion.div className="cert-badge" variants={scaleInItem}>
                 <span className="cert-icon">GOTS</span>
                 <span className="cert-name">Organic Standards</span>
               </motion.div>
-              <motion.div className="cert-badge" variants={staggerItem}>
+              <motion.div className="cert-badge" variants={scaleInItem}>
                 <span className="cert-icon">OEKO</span>
                 <span className="cert-name">Tex Standard 100</span>
               </motion.div>
@@ -276,21 +321,21 @@ function App() {
         <div className="container">
           <motion.h3 className="text-center section-title" {...fadeInUp}>Our Vision & Values</motion.h3>
           <motion.div className="circular-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
-            <motion.div className="circular-card" variants={staggerItem}>
+            <motion.div className="circular-card" variants={scaleInItem}>
               <div className="circular-image">
                 <img src="/vision1.png" alt="Quality Above All" />
               </div>
               <h4>Quality Above All</h4>
               <p>Maintaining the highest standards in our apparel manufacturing. Our dedication to excellence sets us apart in the industry.</p>
             </motion.div>
-            <motion.div className="circular-card" variants={staggerItem}>
+            <motion.div className="circular-card" variants={scaleInItem}>
               <div className="circular-image">
                 <img src="/core1.png" alt="Integrity" />
               </div>
               <h4>Integrity</h4>
               <p>Honesty and transparency are at the forefront of nubira. We believe in fostering long-term trust with our clients and partners.</p>
             </motion.div>
-            <motion.div className="circular-card" variants={staggerItem}>
+            <motion.div className="circular-card" variants={scaleInItem}>
               <div className="circular-image">
                 <img src="/core3.png" alt="Customer Focus" />
               </div>
@@ -306,12 +351,12 @@ function App() {
         <div className="container">
           <motion.h3 className="text-center section-title" {...fadeInUp}>Product and Sales</motion.h3>
           <motion.div className="two-col-grid" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-50px" }}>
-            <motion.div className="info-card" variants={staggerItem}>
+            <motion.div className="info-card" variants={slideLeft}>
               <img src="/prod1.png" alt="Product" className="card-image" />
               <h4>Product</h4>
               <p>Offer a full spectrum of garments, including shirts, t-shirts, dresses for all men's, women's, and kids' & bed sheets, cushion covers, and other home furnishing item ensuring you can cater to diverse demographics and seasonal demands.</p>
             </motion.div>
-            <motion.div className="info-card" variants={staggerItem}>
+            <motion.div className="info-card" variants={slideRight}>
               <img src="/prod2.png" alt="Sales" className="card-image" />
               <h4>Sales</h4>
               <p>

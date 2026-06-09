@@ -1,12 +1,13 @@
 :root {
   --primary-color: #171717; /* Off-black */
+  --accent-color: #1a9696; /* Teal */
   --text-color: #333333;
   --bg-color: #ffffff;
   --bg-secondary: #f9f9f9;
   --border-color: #eaeaea;
   
   --font-heading: 'Libre Baskerville', serif;
-  --font-body: 'Quicksand', sans-serif;
+  --font-body: 'Mulish', sans-serif;
   --font-nav: 'Mulish', sans-serif;
 
   font-family: var(--font-body);
