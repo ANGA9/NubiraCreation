@@ -100,7 +100,7 @@ function App() {
             </div>
             <div className="solution-item">
               <h4>Our Assets</h4>
-              <p>We give our Customers a promise of Quality, Integrity & Confidentiality in terms of client's specific requirements/information. This ensures long term trust of our Customers..</p>
+              <p>State-of-the-art machinery, modern production facilities, and a highly skilled workforce dedicated to precision manufacturing and strict quality control.</p>
             </div>
             <div className="solution-item">
               <h4>Value added</h4>
@@ -167,61 +167,31 @@ function App() {
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="vision-section section-padding">
+      {/* Vision & Values Section */}
+      <section className="vision-values section-padding">
         <div className="container">
-          <h3 className="text-center section-title">Nubira's Vision</h3>
+          <h3 className="text-center section-title">Our Vision & Values</h3>
           <div className="circular-grid">
             <div className="circular-card">
               <div className="circular-image">
                 <img src="/vision1.png" alt="Quality Above All" />
               </div>
               <h4>Quality Above All</h4>
-              <p>At nubira, we believe in maintaining the highest standards of quality in our apparel manufacturing. Our dedication to excellence sets us apart in the industry.</p>
+              <p>Maintaining the highest standards in our apparel manufacturing. Our dedication to excellence sets us apart in the industry.</p>
             </div>
-            <div className="circular-card">
-              <div className="circular-image">
-                <img src="/vision2.png" alt="Technological Advancements" />
-              </div>
-              <h4>Technological Advancements</h4>
-              <p>We leverage cutting-edge technology to enhance our manufacturing processes at nubira. This commitment to innovation ensures we deliver top-notch products.</p>
-            </div>
-            <div className="circular-card">
-              <div className="circular-image">
-                <img src="/vision3.png" alt="Team Spirit" />
-              </div>
-              <h4>Team Spirit</h4>
-              <p>Our team at nubira works collaboratively to achieve common goals. This spirit of teamwork empowers us to tackle challenges and deliver exceptional results.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values Section */}
-      <section className="core-values section-padding">
-        <div className="container">
-          <h3 className="text-center section-title">Our Core Values</h3>
-          <div className="circular-grid">
             <div className="circular-card">
               <div className="circular-image">
                 <img src="/core1.png" alt="Integrity" />
               </div>
               <h4>Integrity</h4>
-              <p>Honesty and integrity are at the forefront of nubira. We believe in transparent dealings and fostering trust with our clients and partners.</p>
-            </div>
-            <div className="circular-card">
-              <div className="circular-image">
-                <img src="/core2.png" alt="Excellence" />
-              </div>
-              <h4>Excellence</h4>
-              <p>We strive for excellence in every aspect of our business at nubira. Our commitment to continuous improvement drives us to exceed expectations.</p>
+              <p>Honesty and transparency are at the forefront of nubira. We believe in fostering long-term trust with our clients and partners.</p>
             </div>
             <div className="circular-card">
               <div className="circular-image">
                 <img src="/core3.png" alt="Customer Focus" />
               </div>
               <h4>Customer Focus</h4>
-              <p>Our customers are at the heart of everything we do at nubira. We listen to their needs and work diligently to meet and exceed their expectations.</p>
+              <p>Our customers are at the heart of everything we do. We listen to their needs and work diligently to exceed their expectations.</p>
             </div>
           </div>
         </div>
@@ -252,16 +222,19 @@ function App() {
       {/* Gallery Section */}
       <section className="gallery-section section-padding bg-light">
         <div className="container">
-          <h3 className="text-center section-title">Explore our vibrant apparel creations gallery</h3>
+          <h3 className="text-center section-title">Our Work</h3>
           <div className="gallery-grid">
             <div className="gallery-item">
-              <img src="/gal1.png" alt="Shirts" />
+              <img src="/gal1.png" alt="Premium Shirts" />
+              <div className="gallery-label">Premium Shirts</div>
             </div>
             <div className="gallery-item">
-              <img src="/gal2.png" alt="Patchwork Fabric" />
+              <img src="/gal2.png" alt="Knitwear" />
+              <div className="gallery-label">Knitwear</div>
             </div>
             <div className="gallery-item">
-              <img src="/gal3.png" alt="Bed setup" />
+              <img src="/gal3.png" alt="Home Furnishings" />
+              <div className="gallery-label">Home Furnishings</div>
             </div>
           </div>
         </div>
