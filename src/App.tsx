@@ -7,7 +7,6 @@ function App() {
         <div className="container nav-container">
           <div className="nav-logo">
             <a href="/" className="logo-link">
-              <img src="/logo.png" alt="Nubira Creation Logo" className="logo-img" />
               <span className="logo-text">Nubira Creation</span>
             </a>
           </div>

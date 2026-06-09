@@ -24,12 +24,6 @@
   font-family: 'Dancing Script', cursive;
   font-size: 1.75rem;
   color: #000;
-  display: none; /* Hidden by default, can be shown if img fails or on desktop */
-}
-@media (min-width: 480px) {
-  .logo-text {
-    display: block;
-  }
 }
 .nav-icons {
   display: flex;
