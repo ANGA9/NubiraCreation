@@ -29,7 +29,7 @@ function App() {
           <div className="hero-content">
             <h1>nubira</h1>
             <h2>Quality Apparel<br />Manufacturing<br />Solutions</h2>
-            <button className="btn-primary">EXPLORE OUR SERVICES</button>
+            <button className="btn-primary" aria-label="Get a quote">GET A QUOTE</button>
           </div>
           <div className="hero-image-wrapper">
             <img src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
@@ -109,6 +109,59 @@ function App() {
             <div className="solution-item">
               <h4>Responsibilities</h4>
               <p>Sourcing right vendors (after deeply studying their present/past capabilities, Industrial reputation).<br />Product development as per Customer's specification considering the competitive price parameters.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Walkthrough Section */}
+      <section className="process-section section-padding">
+        <div className="container">
+          <h3 className="text-center section-title">How It Works</h3>
+          <div className="process-grid">
+            <div className="process-step">
+              <div className="step-number">1</div>
+              <h4>Design</h4>
+              <p>Share your vision, sketches, or tech packs. We collaborate to perfect the details.</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">2</div>
+              <h4>Sample</h4>
+              <p>We create a high-quality prototype for your review, ensuring fit and finish.</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">3</div>
+              <h4>Approve</h4>
+              <p>Once you give the green light on the sample, we prepare for bulk production.</p>
+            </div>
+            <div className="process-step">
+              <div className="step-number">4</div>
+              <h4>Produce</h4>
+              <p>Efficient, ethical manufacturing followed by strict quality control and delivery.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & MOQ Section */}
+      <section className="trust-section section-padding bg-light">
+        <div className="container">
+          <h3 className="text-center section-title">Manufacturing Standards</h3>
+          <div className="trust-content text-center">
+            <p className="moq-text"><strong>Low Minimum Order Quantity (MOQ):</strong> Start your line with flexibility. We support low MOQs to help emerging and established brands scale efficiently.</p>
+            <div className="certifications-row">
+              <div className="cert-badge">
+                <span className="cert-icon">ISO</span>
+                <span className="cert-name">9001 Certified</span>
+              </div>
+              <div className="cert-badge">
+                <span className="cert-icon">GOTS</span>
+                <span className="cert-name">Organic Standards</span>
+              </div>
+              <div className="cert-badge">
+                <span className="cert-icon">OEKO</span>
+                <span className="cert-name">Tex Standard 100</span>
+              </div>
             </div>
           </div>
         </div>
@@ -221,16 +274,16 @@ function App() {
           <div className="form-container">
             <form action="mailto:nubiracreation9@gmail.com" method="post" encType="text/plain">
               <div className="form-group">
-                <input type="text" name="Name" placeholder="Name" className="form-input" />
+                <input type="text" name="Name" placeholder="Name" aria-label="Name" className="form-input" />
               </div>
               <div className="form-group">
-                <input type="email" name="Email" placeholder="Email*" className="form-input" required />
+                <input type="email" name="Email" placeholder="Email*" aria-label="Email" className="form-input" required />
               </div>
               <div className="form-group">
-                <input type="tel" name="Phone" placeholder="Phone" className="form-input" />
+                <input type="tel" name="Phone" placeholder="Phone" aria-label="Phone number" className="form-input" />
               </div>
               <div className="form-group">
-                <textarea name="Notes" placeholder="Other notes" className="form-textarea" rows={4}></textarea>
+                <textarea name="Notes" placeholder="Other notes" aria-label="Other notes" className="form-textarea" rows={4}></textarea>
               </div>
               <div className="form-actions">
                 <span className="attach-file">
