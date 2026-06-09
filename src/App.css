@@ -107,6 +107,7 @@
 .hero-image-wrapper {
   flex: 1;
   display: flex;
+  overflow: hidden;
 }
 .hero-image {
   width: 100%;
@@ -114,7 +115,7 @@
   min-height: 400px;
   transition: transform 0.5s ease;
 }
-.hero-image:hover {
+.hero-image-wrapper:hover .hero-image {
   transform: scale(1.03);
 }
 
@@ -156,6 +157,7 @@
 }
 .about-image-wrapper {
   flex: 1;
+  overflow: hidden;
 }
 .about-image {
   width: 100%;
@@ -163,7 +165,7 @@
   display: block;
   transition: transform 0.5s ease;
 }
-.about-image:hover {
+.about-image-wrapper:hover .about-image {
   transform: scale(1.03);
 }
 
@@ -195,6 +197,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.feature-image-wrapper:hover .circular-image img {
+  transform: scale(1.05);
 }
 .feature-content {
   flex: 1;
@@ -572,4 +578,26 @@
 /* Global Image Cursor */
 img {
   cursor: pointer;
+}
+
+/* Custom Cursor Tracker */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background-color: rgba(23, 23, 23, 0.05);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  display: none;
+}
+@media (min-width: 768px) {
+  .cursor-dot {
+    display: block;
+  }
 }
