@@ -112,6 +112,141 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Vision Section */}
+      <section className="vision-section section-padding">
+        <div className="container">
+          <h3 className="text-center section-title">Nubira's Vision</h3>
+          <div className="circular-grid">
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/vision1.png" alt="Quality Above All" />
+              </div>
+              <h4>Quality Above All</h4>
+              <p>At nubira, we believe in maintaining the highest standards of quality in our apparel manufacturing. Our dedication to excellence sets us apart in the industry.</p>
+            </div>
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/vision2.png" alt="Technological Advancements" />
+              </div>
+              <h4>Technological Advancements</h4>
+              <p>We leverage cutting-edge technology to enhance our manufacturing processes at nubira. This commitment to innovation ensures we deliver top-notch products.</p>
+            </div>
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/vision3.png" alt="Team Spirit" />
+              </div>
+              <h4>Team Spirit</h4>
+              <p>Our team at nubira works collaboratively to achieve common goals. This spirit of teamwork empowers us to tackle challenges and deliver exceptional results.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="core-values section-padding">
+        <div className="container">
+          <h3 className="text-center section-title">Our Core Values</h3>
+          <div className="circular-grid">
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/core1.png" alt="Integrity" />
+              </div>
+              <h4>Integrity</h4>
+              <p>Honesty and integrity are at the forefront of nubira. We believe in transparent dealings and fostering trust with our clients and partners.</p>
+            </div>
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/core2.png" alt="Excellence" />
+              </div>
+              <h4>Excellence</h4>
+              <p>We strive for excellence in every aspect of our business at nubira. Our commitment to continuous improvement drives us to exceed expectations.</p>
+            </div>
+            <div className="circular-card">
+              <div className="circular-image">
+                <img src="/core3.png" alt="Customer Focus" />
+              </div>
+              <h4>Customer Focus</h4>
+              <p>Our customers are at the heart of everything we do at nubira. We listen to their needs and work diligently to meet and exceed their expectations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product and Sales Section */}
+      <section className="product-sales section-padding">
+        <div className="container">
+          <h3 className="text-center section-title">Product and Sales</h3>
+          <div className="two-col-grid">
+            <div className="info-card">
+              <img src="/prod1.png" alt="Product" className="card-image" />
+              <h4>Product</h4>
+              <p>Offer a full spectrum of garments, including shirts, t-shirts, dresses for all men's, women's, and kids' & bed sheets, cushion covers, and other home furnishing item ensuring you can cater to diverse demographics and seasonal demands.</p>
+            </div>
+            <div className="info-card">
+              <img src="/prod2.png" alt="Sales" className="card-image" />
+              <h4>Sales</h4>
+              <p>
+                <strong>Expansion-Focused:</strong> "Accelerate Your Pan-India Reach. Connect Your Brand Directly to North India's Premier Retail and Distributor Network."<br/><br/>
+                <strong>Network-Centric:</strong> "Your Gateway to 150+ Cities in North India. We Place Your Products Directly into the Hands of High-Volume Retailers."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="gallery-section section-padding bg-light">
+        <div className="container">
+          <h3 className="text-center section-title">Explore our vibrant apparel creations gallery</h3>
+          <div className="gallery-grid">
+            <div className="gallery-item">
+              <img src="/gal1.png" alt="Shirts" />
+            </div>
+            <div className="gallery-item">
+              <img src="/gal2.png" alt="Patchwork Fabric" />
+            </div>
+            <div className="gallery-item">
+              <img src="/gal3.png" alt="Bed setup" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="contact-section section-padding">
+        <div className="container">
+          <h3 className="text-center contact-title">Drop us a line!</h3>
+          <div className="form-container">
+            <form action="mailto:nubiracreation9@gmail.com" method="post" encType="text/plain">
+              <div className="form-group">
+                <input type="text" name="Name" placeholder="Name" className="form-input" />
+              </div>
+              <div className="form-group">
+                <input type="email" name="Email" placeholder="Email*" className="form-input" required />
+              </div>
+              <div className="form-group">
+                <input type="tel" name="Phone" placeholder="Phone" className="form-input" />
+              </div>
+              <div className="form-group">
+                <textarea name="Notes" placeholder="Other notes" className="form-textarea" rows={4}></textarea>
+              </div>
+              <div className="form-actions">
+                <span className="attach-file">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                  Attach Files
+                </span>
+                <span className="attachments-count">Attachments (0)</span>
+              </div>
+              <button type="submit" className="btn-submit">SEND</button>
+            </form>
+            <p className="recaptcha-text">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+          </div>
+          <div className="all-products-link text-center">
+            <a href="#">All Products</a>
+          </div>
+        </div>
+      </section>
       
       <footer className="footer">
         <div className="container text-center">
