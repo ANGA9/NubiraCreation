@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState, useRef, ReactNode } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import type { ReactNode } from 'react'
 import './App.css'
 
 function MagneticButton({ children, href, className, ariaLabel }: { children: ReactNode, href: string, className: string, ariaLabel: string }) {
