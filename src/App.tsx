@@ -6,8 +6,10 @@ function App() {
       <nav className="navbar">
         <div className="container nav-container">
           <div className="nav-logo">
-            {/* Logo placeholder if needed, currently empty on left based on screenshot, icons on right */}
-            <span></span>
+            <a href="/" className="logo-link">
+              <img src="/logo.png" alt="Nubira Creation Logo" className="logo-img" />
+              <span className="logo-text">Nubira Creation</span>
+            </a>
           </div>
           <div className="nav-icons">
             <button className="icon-btn" aria-label="Search">

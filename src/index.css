@@ -60,5 +60,8 @@ a {
 
 /* Utility classes */
 .text-center { text-align: center; }
-.section-padding { padding: 5rem 0; }
+.section-padding { padding: 3rem 0; }
+@media (min-width: 768px) {
+  .section-padding { padding: 5rem 0; }
+}
 .bg-light { background-color: var(--bg-secondary); }
