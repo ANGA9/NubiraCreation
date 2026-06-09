@@ -1,11 +1,13 @@
 /* Navbar */
 .navbar {
-  border-bottom: 3px solid #1a9696; /* Teal line from screenshot */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 1rem 0;
-  background: white;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 .nav-container {
   display: flex;
