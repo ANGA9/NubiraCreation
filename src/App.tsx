@@ -1,6 +1,40 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, ReactNode } from 'react'
 import './App.css'
+
+function MagneticButton({ children, href, className, ariaLabel }: { children: ReactNode, href: string, className: string, ariaLabel: string }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+  }
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  }
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      className={className}
+      aria-label={ariaLabel}
+      style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
+    </motion.a>
+  )
+}
 
 function App() {
   const fadeInUp = {
@@ -23,11 +57,25 @@ function App() {
     whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   }
 
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const textRevealContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+    }
+  }
+
+  const textRevealWord = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } }
+  }
+
+  const [cursorState, setCursorState] = useState({ x: 0, y: 0, isHovering: false });
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const isHovering = !!(e.target as Element).closest('a, button, img, .icon-btn');
+      setCursorState({ x: e.clientX, y: e.clientY, isHovering });
     };
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
@@ -37,7 +85,13 @@ function App() {
     <>
       <motion.div
         className="cursor-dot"
-        animate={{ x: mousePosition.x - 20, y: mousePosition.y - 20 }}
+        animate={{ 
+          x: cursorState.x - 20, 
+          y: cursorState.y - 20,
+          scale: cursorState.isHovering ? 1.8 : 1,
+          backgroundColor: cursorState.isHovering ? "rgba(26, 150, 150, 0.15)" : "rgba(23, 23, 23, 0.05)",
+          borderColor: cursorState.isHovering ? "transparent" : "var(--primary-color)"
+        }}
         transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
       />
       <nav className="navbar">
@@ -63,10 +117,22 @@ function App() {
 
       <section className="hero">
         <div className="container hero-container">
-          <motion.div className="hero-content" {...fadeInUp}>
-            <h1>nubira</h1>
-            <h2>Quality Apparel<br />Manufacturing<br />Solutions</h2>
-            <a href="#contact" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }} aria-label="Get a quote">GET A QUOTE</a>
+          <motion.div className="hero-content" initial="hidden" animate="show" variants={textRevealContainer}>
+            <motion.h1 variants={textRevealWord}>nubira</motion.h1>
+            <motion.h2 variants={textRevealContainer} style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ overflow: 'hidden', display: 'block' }}>
+                <motion.span variants={textRevealWord} style={{ display: 'block' }}>Quality Apparel</motion.span>
+              </span>
+              <span style={{ overflow: 'hidden', display: 'block' }}>
+                <motion.span variants={textRevealWord} style={{ display: 'block' }}>Manufacturing</motion.span>
+              </span>
+              <span style={{ overflow: 'hidden', display: 'block' }}>
+                <motion.span variants={textRevealWord} style={{ display: 'block' }}>Solutions</motion.span>
+              </span>
+            </motion.h2>
+            <motion.div variants={textRevealWord}>
+              <MagneticButton href="#contact" className="btn-primary" ariaLabel="Get a quote">GET A QUOTE</MagneticButton>
+            </motion.div>
           </motion.div>
           <motion.div className="hero-image-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
             <img src="/hero.png" alt="Indian mythology style illustration" className="hero-image" />
