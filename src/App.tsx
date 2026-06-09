@@ -97,7 +97,7 @@ function App() {
 
   const lineDraw = {
     hidden: { pathLength: 0, opacity: 0 },
-    show: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut" } }
+    show: { pathLength: 1, opacity: 1, transition: { duration: 1.5 } }
   }
 
   const [cursorState, setCursorState] = useState({ x: 0, y: 0, isHovering: false, isGallery: false });
